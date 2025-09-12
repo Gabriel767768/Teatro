@@ -1,0 +1,88 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #121212;
+    color: #e0e0e0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+header {
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+h1 {
+    font-size: 2.8em;
+    color: #00bcd4;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: 300;
+    /* Linha adicionada para mudar a fonte */
+    font-family: 'Bebas Neue', cursive;
+}
+
+.soundboard {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); /* Reduzido para acomodar círculos */
+    gap: 20px;
+    width: 100%;
+    max-width: 960px; /* Ajustado para visualização */
+    padding: 20px;
+    background-color: #1e1e1e;
+    border-radius: 10px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+}
+
+.sound-button {
+    width: 150px; /* Largura e altura iguais para ser um círculo */
+    height: 150px; 
+    border-radius: 50%; /* Faz o botão ser redondo */
+    border: none;
+    color: #ffffff;
+    font-size: 0.9em; /* Fonte menor para caber no círculo */
+    font-weight: 600;
+    text-align: center;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: normal; /* Permite que o texto quebre linhas */
+    display: flex; /* Para centralizar o texto verticalmente */
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+    transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+}
+
+.sound-button:hover {
+    transform: scale(1.05); /* Aumenta um pouco no hover */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.6);
+}
+
+.sound-button:active {
+    transform: scale(1.02);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+}
+
+/* Classes de Cores Variadas */
+.color-blue { background-color: #3f51b5; } /* Azul escuro */
+.color-red { background-color: #f44336; } /* Vermelho */
+.color-green { background-color: #4caf50; } /* Verde */
+.color-orange { background-color: #ff9800; } /* Laranja */
+.color-purple { background-color: #9c27b0; } /* Roxo */
+.color-teal { background-color: #009688; } /* Verde água */
+.color-pink { background-color: #e91e63; } /* Rosa */
+.color-brown { background-color: #795548; } /* Marrom */
+
+
+footer {
+    margin-top: auto;
+    padding-top: 30px;
+    text-align: center;
+    color: #777;
+    font-size: 0.9em;
+}

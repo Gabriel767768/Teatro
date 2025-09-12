@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sons para Teatro Sesi 9B</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+    <style>
+        /* Estilos do site com botões redondos e cores variadas */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #121212;
+            color: #e0e0e0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        header {
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 2.8em;
+            color: #00bcd4;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 300;
+        }
+
+        .soundboard {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 20px;
+            width: 100%;
+            max-width: 960px;
+            padding: 20px;
+            background-color: #1e1e1e;
+            border-radius: 10px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+        }
+
+        .sound-button {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            border: none;
+            color: #ffffff;
+            font-size: 0.9em;
+            font-weight: 600;
+            text-align: center;
+            text-overflow: ellipsis;
+            overflow: hidden;
+            white-space: normal;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+            transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+        }
+
+        .sound-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.6);
+        }
+
+        .sound-button:active {
+            transform: scale(1.02);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+        }
+
+        /* Classes de Cores Variadas */
+        .color-blue { background-color: #3f51b5; }
+        .color-red { background-color: #f44336; }
+        .color-green { background-color: #4caf50; }
+        .color-orange { background-color: #ff9800; }
+        .color-purple { background-color: #9c27b0; }
+        .color-teal { background-color: #009688; }
+        .color-pink { background-color: #e91e63; }
+        .color-brown { background-color: #795548; }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Sons para Teatro Sesi 9B</h1>
+    </header>
+    <main class="soundboard">
+        <button class="sound-button color-blue" data-sound="audio/redemoinho.mp3">Redemoinho</button>
+        <button class="sound-button color-red" data-sound="audio/rabico mastigando.mp3">Rabico mastigando</button>
+        <button class="sound-button color-green" data-sound="audio/passos pesados.mp3">Passos pesados</button>
+        <button class="sound-button color-orange" data-sound="audio/plin.mp3">Plin</button>
+        <button class="sound-button color-purple" data-sound="audio/01 Sítio Do Picapau Amarelo.mp3">Sítio Do Picapau Amarelo</button>
+        <button class="sound-button color-teal" data-sound="audio/02 passarinhos.mp3">Passarinhos</button>
+        <button class="sound-button color-pink" data-sound="audio/03 som de panela rs.mp3">Panela</button>
+        <button class="sound-button color-brown" data-sound="audio/04 Sapos e Grilos.mp3">Sapos e Grilos</button>
+        <button class="sound-button color-blue" data-sound="audio/Horror Cuca 1.mp3">Horror Cuca 1</button>
+        <button class="sound-button color-red" data-sound="audio/Horror Cuca 3.mp3">Horror Cuca 2</button>
+        <button class="sound-button color-green" data-sound="audio/05 A Cuca Te Pega.mp3">A Cuca Te Pega</button>
+    </main>
+    <footer>
+        <p>&copy; 2024 Sesi Teatro</p>
+    </footer>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const soundboard = document.querySelector('.soundboard');
+            let currentAudio = null;
+            let currentButton = null;
+
+            soundboard.addEventListener('click', (event) => {
+                const button = event.target.closest('.sound-button');
+                if (!button) {
+                    return;
+                }
+
+                const audioPath = button.getAttribute('data-sound');
+                if (!audioPath) {
+                    return;
+                }
+
+                if (button === currentButton && currentAudio && !currentAudio.paused) {
+                    currentAudio.pause();
+                    currentAudio.currentTime = 0;
+                    currentAudio = null;
+                    currentButton = null;
+                } else {
+                    if (currentAudio) {
+                        currentAudio.pause();
+                        currentAudio.currentTime = 0;
+                    }
+                    
+                    currentAudio = new Audio(audioPath);
+                    currentAudio.play().catch(error => console.error("Erro ao tocar o áudio:", error));
+                    currentButton = button;
+                }
+            });
+        });
+    </script>
+</body>
+</html>
